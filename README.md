@@ -436,5 +436,6 @@ Create a map showing many markers connected by a Polyline.
 # Upgrade Notice
 
 # Screenshots
+![screenshot](screenshot.png)
 
 [google-api-key]:https://developers.google.com/maps/documentation/javascript/get-api-key
