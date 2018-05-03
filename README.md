@@ -421,12 +421,6 @@ Create a map showing many markers connected by a Polyline.
 [/gmaps]
 ```
 
-# Changelog
-
-# Frequently Asked Questions
-
-# Upgrade Notice
-
 # Screenshots
 ![screenshot](screenshot.png)
 
