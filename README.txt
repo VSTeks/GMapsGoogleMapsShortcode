@@ -1,4 +1,12 @@
 # GMaps Google Maps Shortcode
+Tags: maps, google
+Contributors: vsteks
+Requires at least: 4.0.0
+Tested up to: 4.9.5
+Requires PHP: 7.1
+Stable tag: trunk
+License: GPLv2
+LICENSE URI: http://gnu.org/license/gpl-2.0.html
 
 A simple wordpress plugin to insert Google Maps into posts/pages using the javascript API. Can be used to create markers, lines, and arbitrary shapes.
 
@@ -412,6 +420,21 @@ Create a map with one marker, centered around Angkor Wat, Cambodia.
 ```
 
 ## Multi Marker
-Create a map showing 
+Create a map showing many markers connected by a Polyline.
+
+```
+[gmaps lat=13.4125 lng=103.8670]
+    [gmaps-marker lat=13.4125 lng=103.8670]
+    [gmaps-marker lat=13.0 lng=103]
+[/gmaps]
+```
+
+# Changelog
+
+# Frequently Asked Questions
+
+# Upgrade Notice
+
+# Screenshots
 
 [google-api-key]:https://developers.google.com/maps/documentation/javascript/get-api-key
