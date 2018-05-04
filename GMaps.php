@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name:  GMaps Google Maps Shortcode
-Plugin URI:   https://developer.wordpress.org/plugins/the-basics/
+Plugin URI:   https://github.com/VSTeks/GMapsGoogleMapsShortcode
 Description:  Adds shortcode's to insert Google Maps via the javascript API.
 Version:      0.0.1
 Author:       VSteks
