@@ -3,7 +3,7 @@
 Plugin Name:  GMaps Google Maps Shortcode
 Plugin URI:   https://github.com/VSTeks/GMapsGoogleMapsShortcode
 Description:  Adds shortcode's to insert Google Maps via the javascript API.
-Version:      0.0.1
+Version:      1.0.0
 Author:       VSteks
 Author URI:   http://vsteks.com/
 License:      GPL2
