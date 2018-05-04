@@ -31,7 +31,7 @@ Text Domain:  vs-gm
  *  If an `id` element is not passed it will be generated
  *  in the form of 'map_'.uniqid().
  */
-function do_gmaps_maps($attrs, $content = null) {
+function do_gmaps_maps_5ae9fcc8cf7e2($attrs, $content = null) {
     $type = isset($attrs["type"]) ? $attrs["type"] : 'roadmap';
     $lat = isset($attrs["lat"]) ? $attrs["lat"] : 0;
     $lng = isset($attrs["lng"]) ? $attrs["lng"] : 0;
@@ -69,7 +69,7 @@ function do_gmaps_maps($attrs, $content = null) {
     }
 
     // Generate the map and push it onto the global maps array.
-    array_push($GLOBALS["gmaps-maps"], "
+    array_push($GLOBALS["5ae9fcc8cf7e2-gmaps-maps"], "
     var $mapId = new google.maps.Map(document.getElementById('$mapId'), {
               center: {lat: $lat, lng: $lng},
               zoom: $zoom,
@@ -92,13 +92,13 @@ function do_gmaps_maps($attrs, $content = null) {
 
     // Create a global variable to store our map id,
     // so any child element's will know what map they belong too.
-    $GLOBALS["current-gmaps-map-id"] = $mapId;
+    $GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"] = $mapId;
 
     // Parse for nested shortcode.
     if($content) {
         do_shortcode($content);
     }
-    unset($GLOBALS["current-gmaps-map-id"]);
+    unset($GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"]);
     return $out."id='$mapId'></div>";
 }
 
@@ -108,14 +108,14 @@ function do_gmaps_maps($attrs, $content = null) {
  *  If the `id` attribute is not set one will be generated in they
  *  format 'marker_'.uniqid().
  */
-function do_gmaps_marker($attrs) {
+function do_gmaps_marker_5ae9fcc8cf7e2($attrs) {
   if(!isset($attrs["lng"]) || !isset($attrs['lat'])) {
     echo "Google Maps Markers require Long & lang param's";
     return;
   } else {
 
-    if(isset($GLOBALS["current-gmaps-map-id"])) {
-      $current_map = $GLOBALS["current-gmaps-map-id"];
+    if(isset($GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"])) {
+      $current_map = $GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"];
     }
 
     $title = isset($attrs["title"]) ? $attrs["title"] : "''";
@@ -138,7 +138,7 @@ function do_gmaps_marker($attrs) {
       zIndex: $zIndex
     });";
 
-    array_push($GLOBALS["gmaps-markers"], $marker);
+    array_push($GLOBALS["5ae9fcc8cf7e2-gmaps-markers"], $marker);
   }
 }
 
@@ -146,7 +146,7 @@ function do_gmaps_marker($attrs) {
  *  Generate a Polygone Javascript object.
  *  The `path` attribute is required
  */
-function do_gmaps_polygon($attrs) {
+function do_gmaps_polygon_5ae9fcc8cf7e2($attrs) {
     if(!isset($attrs["path"])) {
       echo "gmaps-polygon requires the 'path' attribute";
     } else {
@@ -182,7 +182,7 @@ function do_gmaps_polygon($attrs) {
         }
       }
 
-      if(isset($GLOBALS["current-gmaps-map-id"])) {
+      if(isset($GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"])) {
         $out = $out."
             strokeColor: '$stroke_color',
             strokeOpacity: $stroke_opacity,
@@ -196,17 +196,17 @@ function do_gmaps_polygon($attrs) {
             fillColor: '$fill_color',
             fillOpacity: $fill_opacity
         });
-        $gone_id.setMap(".$GLOBALS["current-gmaps-map-id"].");";
+        $gone_id.setMap(".$GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"].");";
       }
 
-      array_push($GLOBALS["gmaps-polygons"], $out);
+      array_push($GLOBALS["5ae9fcc8cf7e2-gmaps-polygons"], $out);
     }
 }
 
 /*
  * Generate a Polyline JavaScript Object, the  `path` attribute is required.
  */
-function do_gmaps_polyline($attrs) {
+function do_gmaps_polyline_5ae9fcc8cf7e2($attrs) {
     if(!isset($attrs["path"])) {
       echo "gmaps-polyline requires the 'path' attribute";
     } else {
@@ -231,7 +231,7 @@ function do_gmaps_polyline($attrs) {
       }
 
       if(sizeof($points) <=1 ) {
-        echo "gmaps-polyline requires more the one point";
+        echo "gmaps-polyline requires more than one point";
         return;
       } else {
         $out = "var $line_id = new google.maps.Polyline({
@@ -243,7 +243,7 @@ function do_gmaps_polyline($attrs) {
             $out = $out.$point.",";
           }
         }
-        if(isset($GLOBALS["current-gmaps-map-id"])) {
+        if(isset($GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"])) {
           $out = $out."
               strokeColor: '$stroke_color',
               strokeOpacity: $stroke_opacity,
@@ -255,10 +255,9 @@ function do_gmaps_polyline($attrs) {
               editable: $editable,
               clickable: $clickable
           });
-          $line_id.setMap(".$GLOBALS["current-gmaps-map-id"].");";
+          $line_id.setMap(".$GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"].");";
+          array_push($GLOBALS["5ae9fcc8cf7e2-gmaps-polylines"], $out);
         }
-
-        array_push($GLOBALS["gmaps-polylines"], $out);
       }
     }
 }
@@ -268,7 +267,7 @@ function do_gmaps_polyline($attrs) {
  * Must set marker_id manually in gmaps-marker and
  * pass the marker id in via the `marker` attribute.
  */
-function do_gmaps_info_window($attrs, $content = null) {
+function do_gmaps_info_window_5ae9fcc8cf7e2($attrs, $content = null) {
   $winId = 'info_window_'.uniqid();
   if(!isset($attrs["marker"])) {
     echo "Info window requires the marker attribute";
@@ -276,8 +275,8 @@ function do_gmaps_info_window($attrs, $content = null) {
   } else {
     $marker = $attrs["marker"];
   }
-  if(isset($GLOBALS["current-gmaps-map-id"])) {
-    $current_map = $GLOBALS["current-gmaps-map-id"];
+  if(isset($GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"])) {
+    $current_map = $GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"];
   }
 
   $out = "
@@ -292,7 +291,7 @@ function do_gmaps_info_window($attrs, $content = null) {
       });
   ";
 
-  array_push($GLOBALS["gmaps-info-windows"], $out);
+  array_push($GLOBALS["5ae9fcc8cf7e2-gmaps-info-windows"], $out);
 }
 
 /*
@@ -301,83 +300,80 @@ function do_gmaps_info_window($attrs, $content = null) {
  * Settings > General > Gmaps API Key and link to
  * google maps api.
  */
-function include_google_maps() {
+function include_google_maps_5ae9fcc8cf7e2() {
 
-    $maps = implode('', $GLOBALS["gmaps-maps"]);
-    $markers = implode('', $GLOBALS["gmaps-markers"]);
-    $polylines = implode('', $GLOBALS["gmaps-polylines"]);
-    $polygons = implode('', $GLOBALS["gmaps-polygons"]);
-    $info_windows = implode('', $GLOBALS["gmaps-info-windows"]);
-    $key = get_option("google_maps_api_key");
+    $maps = implode('', $GLOBALS["5ae9fcc8cf7e2-gmaps-maps"]);
+    $markers = implode('', $GLOBALS["5ae9fcc8cf7e2-gmaps-markers"]);
+    $polylines = implode('', $GLOBALS["5ae9fcc8cf7e2-gmaps-polylines"]);
+    $polygons = implode('', $GLOBALS["5ae9fcc8cf7e2-gmaps-polygons"]);
+    $info_windows = implode('', $GLOBALS["5ae9fcc8cf7e2-gmaps-info-windows"]);
+    $key = get_option("google_maps_api_key_5ae9fcc8cf7e2");
 
     if(!$key) {
         echo "<div class='notice notice-error'>Google Maps Require an api key be set in Settings > General</div>";
     }
-
-    echo "
-    <script>
-      function gmaps_init() {
+    $script = "
+      function gmaps_init_5ae9fcc8cf7e2() {
               $maps
               $markers
               $polylines
               $polygons
               $info_windows
-      }
-    </script>
-    <script src='https://maps.googleapis.com/maps/api/js?key=".$key."&callback=gmaps_init' async defer></script>";
-
+      }";
+    wp_enqueue_script('gmaps-includes-5ae9fcc8cf7e2', "https://maps.googleapis.com/maps/api/js?key=".$key."&callback=gmaps_init_5ae9fcc8cf7e2", array(), "1.0", false);
+    wp_add_inline_script("gmaps-includes-5ae9fcc8cf7e2", $script, 'before');
     // Unset Global variables.
-    unset($GLOBALS["gmaps-maps"]);
-    unset($GLOBALS["gmaps-markers"]);
-    unset($GLOBALS["gmaps-polylines"]);
-    unset($GLOBALS["gmaps-polygons"]);
+    unset($GLOBALS["5ae9fcc8cf7e2-gmaps-maps"]);
+    unset($GLOBALS["5ae9fcc8cf7e2-gmaps-markers"]);
+    unset($GLOBALS["5ae9fcc8cf7e2-gmaps-polylines"]);
+    unset($GLOBALS["5ae9fcc8cf7e2-gmaps-polygons"]);
 }
 
 /*
  * Ensure global variables exist and are empty
  */
-function create_gmaps_global_vars() {
-  $GLOBALS["gmaps-maps"] = [];
-  $GLOBALS["gmaps-markers"] = [];
-  $GLOBALS["gmaps-polylines"] = [];
-  $GLOBALS["gmaps-polygons"] = [];
-  $GLOBALS["gmaps-info-windows"] = [];
+function create_gmaps_global_vars_5ae9fcc8cf7e2() {
+  $GLOBALS["5ae9fcc8cf7e2-gmaps-maps"] = [];
+  $GLOBALS["5ae9fcc8cf7e2-gmaps-markers"] = [];
+  $GLOBALS["5ae9fcc8cf7e2-gmaps-polylines"] = [];
+  $GLOBALS["5ae9fcc8cf7e2-gmaps-polygons"] = [];
+  $GLOBALS["5ae9fcc8cf7e2-gmaps-info-windows"] = [];
 }
 
 /*
    Callback generate the GoogleMaps Api key input element.
 */
-function generate_setting() {
-  $value = get_option('google_maps_api_key');
-  echo "<input type='text' name='google_maps_api_key' id='google_maps_api_key' style='width:25%' value='$value'/>";
+function vstek_generate_gmaps_setting_5ae9fcc8cf7e2() {
+  $value = get_option('google_maps_api_key_5ae9fcc8cf7e2');
+  echo "<input type='text' name='google_maps_api_key_5ae9fcc8cf7e2' id='google_maps_api_key_5ae9fcc8cf7e2' style='width:25%' value='$value'/>";
 }
 
 /*
     Register the GoogleMaps Api key setting to the 'General' settings page.
 */
-function register_setting_field() {
+function gmaps_register_setting_field_5ae9fcc8cf7e2() {
   register_setting(
       'general',
-      'google_maps_api_key'
+      'google_maps_api_key_5ae9fcc8cf7e2'
   );
   add_settings_field(
       'html_guidelines_message',
       'Google Maps Api Key',
-      'generate_setting',
+      'vstek_generate_gmaps_setting_5ae9fcc8cf7e2',
       'general'
   );
 }
 
 // Add shortcode handlers
-add_shortcode('gmaps', 'do_gmaps_maps');
-add_shortcode('gmaps-marker', 'do_gmaps_marker');
-add_shortcode('gmaps-polyline', 'do_gmaps_polyline');
-add_shortcode('gmaps-polygon', 'do_gmaps_polygon');
-add_shortcode('gmaps-info-window', 'do_gmaps_info_window');
+add_shortcode('gmaps', 'do_gmaps_maps_5ae9fcc8cf7e2');
+add_shortcode('gmaps-marker', 'do_gmaps_marker_5ae9fcc8cf7e2');
+add_shortcode('gmaps-polyline', 'do_gmaps_polyline_5ae9fcc8cf7e2');
+add_shortcode('gmaps-polygon', 'do_gmaps_polygon_5ae9fcc8cf7e2');
+add_shortcode('gmaps-info-window', 'do_gmaps_info_window_5ae9fcc8cf7e2');
 
 // Add request actions.
-add_action('wp_head', 'create_gmaps_global_vars');
-add_action('wp_footer', 'include_google_maps');
+add_action('wp_head', 'create_gmaps_global_vars_5ae9fcc8cf7e2');
+add_action('wp_footer', 'include_google_maps_5ae9fcc8cf7e2');
 
 // Add custom admin settings field.
-add_filter('admin_init', 'register_setting_field');
+add_filter('admin_init', 'gmaps_register_setting_field_5ae9fcc8cf7e2');
