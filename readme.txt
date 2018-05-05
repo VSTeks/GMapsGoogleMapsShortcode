@@ -16,6 +16,8 @@ Before using this plugin you must set GMaps API Key in google in Settings > Gene
   After installing you need to set the Gmaps API key in Settings -> General.
 
 == Changelog ==
+ v1.0.1 [5-5-2018]
+ Only enqueue Google maps javascript if shortcode is present on page.
 
 == Frequently Asked Questions ==
 
