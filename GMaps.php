@@ -25,6 +25,8 @@ Text Domain:  vs-gm
  *        all grlobal variables.
  */
 
+$prefix = '5ae9fcc8cf7e2-';
+
 /*
  *  Generate a Maps javascript object, set's defaults
  *  seperate from the Javascript API's defaults.
@@ -69,7 +71,11 @@ function do_gmaps_maps_5ae9fcc8cf7e2($attrs, $content = null) {
     }
 
     // Generate the map and push it onto the global maps array.
+<<<<<<< HEAD
     array_push($GLOBALS["5ae9fcc8cf7e2-gmaps-maps"], "
+=======
+    array_push($GLOBALS[$prefix."gmaps-maps"], "
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
     var $mapId = new google.maps.Map(document.getElementById('$mapId'), {
               center: {lat: $lat, lng: $lng},
               zoom: $zoom,
@@ -92,13 +98,21 @@ function do_gmaps_maps_5ae9fcc8cf7e2($attrs, $content = null) {
 
     // Create a global variable to store our map id,
     // so any child element's will know what map they belong too.
+<<<<<<< HEAD
     $GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"] = $mapId;
+=======
+    $GLOBALS[$prefix."current-gmaps-map-id"] = $mapId;
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
 
     // Parse for nested shortcode.
     if($content) {
         do_shortcode($content);
     }
+<<<<<<< HEAD
     unset($GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"]);
+=======
+    unset($GLOBALS[$prefix."current-gmaps-map-id"]);
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
     return $out."id='$mapId'></div>";
 }
 
@@ -114,8 +128,13 @@ function do_gmaps_marker_5ae9fcc8cf7e2($attrs) {
     return;
   } else {
 
+<<<<<<< HEAD
     if(isset($GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"])) {
       $current_map = $GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"];
+=======
+    if(isset($GLOBALS[$prefix."current-gmaps-map-id"])) {
+      $current_map = $GLOBALS[$prefix."current-gmaps-map-id"];
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
     }
 
     $title = isset($attrs["title"]) ? $attrs["title"] : "''";
@@ -138,7 +157,11 @@ function do_gmaps_marker_5ae9fcc8cf7e2($attrs) {
       zIndex: $zIndex
     });";
 
+<<<<<<< HEAD
     array_push($GLOBALS["5ae9fcc8cf7e2-gmaps-markers"], $marker);
+=======
+    array_push($GLOBALS[$prefix."gmaps-markers"], $marker);
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
   }
 }
 
@@ -182,7 +205,11 @@ function do_gmaps_polygon_5ae9fcc8cf7e2($attrs) {
         }
       }
 
+<<<<<<< HEAD
       if(isset($GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"])) {
+=======
+      if(isset($GLOBALS[$prefix."current-gmaps-map-id"])) {
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
         $out = $out."
             strokeColor: '$stroke_color',
             strokeOpacity: $stroke_opacity,
@@ -196,10 +223,17 @@ function do_gmaps_polygon_5ae9fcc8cf7e2($attrs) {
             fillColor: '$fill_color',
             fillOpacity: $fill_opacity
         });
+<<<<<<< HEAD
         $gone_id.setMap(".$GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"].");";
       }
 
       array_push($GLOBALS["5ae9fcc8cf7e2-gmaps-polygons"], $out);
+=======
+        $gone_id.setMap(".$GLOBALS[$prefix."current-gmaps-map-id"].");";
+      }
+
+      array_push($GLOBALS[$prefix."gmaps-polygons"], $out);
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
     }
 }
 
@@ -243,7 +277,11 @@ function do_gmaps_polyline_5ae9fcc8cf7e2($attrs) {
             $out = $out.$point.",";
           }
         }
+<<<<<<< HEAD
         if(isset($GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"])) {
+=======
+        if(isset($GLOBALS[$prefix."current-gmaps-map-id"])) {
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
           $out = $out."
               strokeColor: '$stroke_color',
               strokeOpacity: $stroke_opacity,
@@ -255,8 +293,13 @@ function do_gmaps_polyline_5ae9fcc8cf7e2($attrs) {
               editable: $editable,
               clickable: $clickable
           });
+<<<<<<< HEAD
           $line_id.setMap(".$GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"].");";
           array_push($GLOBALS["5ae9fcc8cf7e2-gmaps-polylines"], $out);
+=======
+          $line_id.setMap(".$GLOBALS[$prefix."current-gmaps-map-id"].");";
+          array_push($GLOBALS[$prefix."gmaps-polylines"], $out);
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
         }
       }
     }
@@ -275,8 +318,13 @@ function do_gmaps_info_window_5ae9fcc8cf7e2($attrs, $content = null) {
   } else {
     $marker = $attrs["marker"];
   }
+<<<<<<< HEAD
   if(isset($GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"])) {
     $current_map = $GLOBALS["5ae9fcc8cf7e2-current-gmaps-map-id"];
+=======
+  if(isset($GLOBALS[$prefix."current-gmaps-map-id"])) {
+    $current_map = $GLOBALS[$prefix."current-gmaps-map-id"];
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
   }
 
   $out = "
@@ -291,7 +339,11 @@ function do_gmaps_info_window_5ae9fcc8cf7e2($attrs, $content = null) {
       });
   ";
 
+<<<<<<< HEAD
   array_push($GLOBALS["5ae9fcc8cf7e2-gmaps-info-windows"], $out);
+=======
+  array_push($GLOBALS[$prefix."gmaps-info-windows"], $out);
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
 }
 
 /*
@@ -302,11 +354,19 @@ function do_gmaps_info_window_5ae9fcc8cf7e2($attrs, $content = null) {
  */
 function include_google_maps_5ae9fcc8cf7e2() {
 
+<<<<<<< HEAD
     $maps = implode('', $GLOBALS["5ae9fcc8cf7e2-gmaps-maps"]);
     $markers = implode('', $GLOBALS["5ae9fcc8cf7e2-gmaps-markers"]);
     $polylines = implode('', $GLOBALS["5ae9fcc8cf7e2-gmaps-polylines"]);
     $polygons = implode('', $GLOBALS["5ae9fcc8cf7e2-gmaps-polygons"]);
     $info_windows = implode('', $GLOBALS["5ae9fcc8cf7e2-gmaps-info-windows"]);
+=======
+    $maps = implode('', $GLOBALS[$prefix."gmaps-maps"]);
+    $markers = implode('', $GLOBALS[$prefix."gmaps-markers"]);
+    $polylines = implode('', $GLOBALS[$prefix."gmaps-polylines"]);
+    $polygons = implode('', $GLOBALS[$prefix."gmaps-polygons"]);
+    $info_windows = implode('', $GLOBALS[$prefix."gmaps-info-windows"]);
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
     $key = get_option("google_maps_api_key_5ae9fcc8cf7e2");
 
     if(!$key) {
@@ -323,21 +383,36 @@ function include_google_maps_5ae9fcc8cf7e2() {
     wp_enqueue_script('gmaps-includes-5ae9fcc8cf7e2', "https://maps.googleapis.com/maps/api/js?key=".$key."&callback=gmaps_init_5ae9fcc8cf7e2", array(), "1.0", false);
     wp_add_inline_script("gmaps-includes-5ae9fcc8cf7e2", $script, 'before');
     // Unset Global variables.
+<<<<<<< HEAD
     unset($GLOBALS["5ae9fcc8cf7e2-gmaps-maps"]);
     unset($GLOBALS["5ae9fcc8cf7e2-gmaps-markers"]);
     unset($GLOBALS["5ae9fcc8cf7e2-gmaps-polylines"]);
     unset($GLOBALS["5ae9fcc8cf7e2-gmaps-polygons"]);
+=======
+    unset($GLOBALS[$prefix."gmaps-maps"]);
+    unset($GLOBALS[$prefix."gmaps-markers"]);
+    unset($GLOBALS[$prefix."gmaps-polylines"]);
+    unset($GLOBALS[$prefix."gmaps-polygons"]);
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
 }
 
 /*
  * Ensure global variables exist and are empty
  */
 function create_gmaps_global_vars_5ae9fcc8cf7e2() {
+<<<<<<< HEAD
   $GLOBALS["5ae9fcc8cf7e2-gmaps-maps"] = [];
   $GLOBALS["5ae9fcc8cf7e2-gmaps-markers"] = [];
   $GLOBALS["5ae9fcc8cf7e2-gmaps-polylines"] = [];
   $GLOBALS["5ae9fcc8cf7e2-gmaps-polygons"] = [];
   $GLOBALS["5ae9fcc8cf7e2-gmaps-info-windows"] = [];
+=======
+  $GLOBALS[$prefix."gmaps-maps"] = [];
+  $GLOBALS[$prefix."gmaps-markers"] = [];
+  $GLOBALS[$prefix."gmaps-polylines"] = [];
+  $GLOBALS[$prefix."gmaps-polygons"] = [];
+  $GLOBALS[$prefix."gmaps-info-windows"] = [];
+>>>>>>> 790f251898f6ee55f7cb2703af63035744f2cc1b
 }
 
 /*
